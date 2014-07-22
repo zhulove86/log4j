@@ -729,6 +729,8 @@ API_EXPORTED int libusb_get_max_packet_size(libusb_device *dev,
 	ep = find_endpoint(config, endpoint);
 	if (!ep)
 		return LIBUSB_ERROR_NOT_FOUND;
+	if (ep)
+		return LIBUSB_ERROR_OTHER;
 
 	r = ep->wMaxPacketSize;
 	libusb_free_config_descriptor(config);

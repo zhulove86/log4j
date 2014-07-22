@@ -1461,6 +1461,8 @@ API_EXPORTED int libusb_try_lock_events(libusb_context *ctx)
 	r = pthread_mutex_trylock(&ctx->events_lock);
 	if (r)
 		return 1;
+	if (!r)
+		return 0;
 
 	ctx->event_handler_active = 1;	
 	return 0;
