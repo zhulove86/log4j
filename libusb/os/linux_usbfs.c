@@ -181,7 +181,7 @@ static const char *find_usbfs_path(void)
 {
 	const char *path = "/dev/bus/usb";
 	const char *ret = NULL;
-
+	usbi_dbg("found usbfs start");
 	if (check_usb_vfs(path)) {
 		ret = path;
 	} else {
@@ -191,6 +191,7 @@ static const char *find_usbfs_path(void)
 	}
 
 	usbi_dbg("found usbfs at %s", ret);
+	usbi_dbg("found usbfs end");
 	return ret;
 }
 
@@ -238,6 +239,9 @@ static int op_init(struct libusb_context *ctx)
 	if (!usbfs_path) {
 		usbi_err(ctx, "could not find usbfs");
 		return LIBUSB_ERROR_OTHER;
+	}
+	else {
+		usbi_dbg("find usbfs\n");
 	}
 
 	if (monotonic_clkid == -1)

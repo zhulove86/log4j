@@ -127,7 +127,7 @@ static int ep_to_pipeRef(struct libusb_device_handle *dev_handle, uint8_t ep, ui
     cInterface = &priv->interfaces[iface];
 
     if (dev_handle->claimed_interfaces & (1 << iface)) {
-      for (i = 0 ; i < cInterface->num_endpoints ; i++) {
+      for (i = 0 ; i < cInterface->num_endpoints-1 ; i++) {
 	if (cInterface->endpoint_addrs[i] == ep) {
 	  *pipep = i + 1;
 	  *ifcp = iface;
